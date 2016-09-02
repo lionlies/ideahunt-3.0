@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem "bootstrap-sass"
+gem "simple_form"
+
 gem "quiet_assets"
 gem "better_errors"
 gem "awesome_rails_console"
