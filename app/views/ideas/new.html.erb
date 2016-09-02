@@ -1,1 +1,6 @@
-<%= simple_form_for @ideas.each do |f| %>
+<h3>Create a new idea</h3>
+<%= simple_form_for @idea do |f| %>
+  <%= f.input :title, input_html: { class: "form-control"} %>
+  <%= f.input :description, input_html: { class: "form-control"} %>
+  <%= f.submit "Submit", data: {disable_with: "Submitting..."} %>
+<% end %>
