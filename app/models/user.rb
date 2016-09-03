@@ -5,4 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :ideas, dependent: :destroy
+  
+  has_many :favorites
+  has_many :favorite_ideas, through: :favorites, source: :favorited, source_type: "Idea"
 end
