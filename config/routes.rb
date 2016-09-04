@@ -3,10 +3,13 @@ Rails.application.routes.draw do
   devise_for :users
   resources :ideas
   resources :favorite_ideas, only: [:create, :destroy]
+
+  get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+
   root 'ideas#index'
 
   # Example of regular route:
