@@ -40,10 +40,9 @@
                     <% end %>
                     <%= idea.fans.count %>
                     <div>
+                      <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i>
                       <a href="<%= url_for([idea, {only_path: false}]) %>#disqus_thread"></a>
                     </div>
-
-
                   </div>
 
                 </td>
