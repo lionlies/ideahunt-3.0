@@ -1,5 +1,6 @@
 class FavoriteIdeasController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :set_idea
 
   def create

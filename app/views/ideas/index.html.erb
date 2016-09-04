@@ -39,6 +39,10 @@
                       <% end %>
                     <% end %>
                     <%= idea.fans.count %>
+                    <div>
+                      <a href="<%= url_for([idea, {only_path: false}]) %>#disqus_thread"></a>
+                    </div>
+
 
                   </div>
 
