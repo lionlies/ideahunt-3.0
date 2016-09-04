@@ -7,7 +7,7 @@ class IdeasController < ApplicationController
   end
 
   def index
-    @ideas = Idea.all
+    @ideas = Idea.order("favorites_count desc")
   end
 
   def new
