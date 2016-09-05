@@ -15,4 +15,5 @@
 //= require bootstrap-sprockets
 //= require bootstrap/alert
 //= require turbolinks
+//= require social-share-button
 //= require_tree .

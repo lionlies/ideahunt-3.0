@@ -26,9 +26,7 @@
                 <td class="col-md-2">
 
                   <div class="fav-icon">
-
                     <% if current_user %>
-
                       <% if !current_user.favorite_ideas.exists?(id: idea.id) %>
                         <%= link_to favorite_ideas_path(idea_id: idea), method: :post do %>
                           <i class="fa fa-heart-o fa-lg" aria-hidden="true"></i>
@@ -38,19 +36,17 @@
                           <i class="fa fa-heart fa-lg" aria-hidden="true"></i>
                         <% end %>
                       <% end %>
-
                     <% else %>
                       <%= link_to favorite_ideas_path(idea_id: idea), method: :post do %>
                         <i class="fa fa-heart-o fa-lg" aria-hidden="true"></i>
                       <% end %>
                     <% end %>
-
                     <%= idea.fans.count %>
+                  </div>
 
-                    <div>
-                      <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i>
-                      <a href="<%= url_for([idea, {only_path: false}]) %>#disqus_thread"></a>
-                    </div>
+                  <div>
+                    <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i>
+                    <a href="<%= url_for([idea, {only_path: false}]) %>#disqus_thread"></a>
                   </div>
 
                 </td>

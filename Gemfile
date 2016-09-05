@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+
+gem "social-share-button"
 gem "font-awesome-rails"
 gem "devise"
 gem "bootstrap-sass"

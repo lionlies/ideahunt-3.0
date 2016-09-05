@@ -3,4 +3,6 @@
 <%= link_to "edit", edit_idea_path(@idea) %>
 <%= link_to "delete", idea_path(@idea), method: :delete %>
 
+<%= social_share_button_tag "#{@idea.title}: #{@idea.description}" %>
+
 <%= render "disqus" %>
