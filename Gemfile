@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'acts-as-taggable-on', '~> 4.0'
 gem "social-share-button"
 gem "font-awesome-rails"
 gem "devise"

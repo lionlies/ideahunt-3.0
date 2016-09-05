@@ -7,7 +7,11 @@ class IdeasController < ApplicationController
   end
 
   def index
-    @ideas = Idea.order("favorites_count desc")
+    if params[:tag]
+      @ideas = Idea.tagged_with(params[:tag]).order("favorites_count desc")
+    else
+      @ideas = Idea.order("favorites_count desc")
+    end
   end
 
   def new
@@ -48,6 +52,6 @@ class IdeasController < ApplicationController
   private
 
   def idea_params
-    params.require(:idea).permit(:title, :description)
+    params.require(:idea).permit(:title, :description, :tag_list)
   end
 end
