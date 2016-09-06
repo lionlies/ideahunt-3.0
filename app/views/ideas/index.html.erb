@@ -50,7 +50,12 @@
                 </td>
 
                 <td class="col-md-11">
-                  <h4><%= link_to idea.title, idea_path(idea) %></h4>
+                  <h4>
+                    <%= link_to idea.title, idea_path(idea) %>
+                    <span class="pull-right">
+                      <%= idea.user.username %>
+                    </span>
+                  </h4>
                   <p><%= idea.description %></p>
                   <p>
                     <% unless idea.tag_list.count == 0 %>
@@ -69,7 +74,7 @@
     </div>
 
     <div class="col-md-3">
-      <h4>Tag Cloud</h4>
+      <h4>Tag Cloud / <%= link_to "All", "/" %></h4>
       <div id="tag_cloud">
         <% tag_cloud Idea.tag_counts, %w[xs s m l xl] do |tag, css_class| %>
           <%= link_to tag.name, tag_path(tag.name), class: css_class %>

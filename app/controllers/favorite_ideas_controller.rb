@@ -5,7 +5,7 @@ class FavoriteIdeasController < ApplicationController
 
   def create
     if Favorite.create(favorited: @idea, user: current_user)
-      redirect_to :back, notice: "Idea has been favorited."
+      redirect_to :back
     else
       redirect_to :back, alert: "Something went wrong!"
     end
@@ -13,7 +13,7 @@ class FavoriteIdeasController < ApplicationController
 
   def destroy
     Favorite.where(favorited_id: @idea.id, user_id: current_user.id).first.destroy
-    redirect_to :back, notice: "Idea is no longer in favorites."
+    redirect_to :back
   end
 
   private
