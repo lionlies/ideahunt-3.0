@@ -1,8 +1,56 @@
-<%= @idea.title %>
-<%= @idea.description %>
-<%= link_to "edit", edit_idea_path(@idea) %>
-<%= link_to "delete", idea_path(@idea), method: :delete %>
+<div class="container">
+  <div class="row">
 
-<%= social_share_button_tag "#{@idea.title}: #{@idea.description}" %>
+    <div class="col-md-8 col-md-offset-2">
 
-<%= render "disqus" %>
+        <div class="col-md-2">
+          <div class="fav-icon">
+            <% if current_user %>
+              <% if !current_user.favorite_ideas.exists?(id: @idea.id) %>
+                <%= link_to favorite_ideas_path(idea_id: @idea), method: :post do %>
+                  <i class="fa fa-heart-o fa-lg" aria-hidden="true"></i>
+                <% end %>
+              <% else %>
+                <%= link_to favorite_idea_path(@idea), method: :delete do %>
+                  <i class="fa fa-heart fa-lg" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+            <% else %>
+              <%= link_to favorite_ideas_path(idea_id: @idea), method: :post do %>
+                <i class="fa fa-heart-o fa-lg" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+            <%= @idea.fans.count %>
+          </div>
+
+          <div>
+            <%= social_share_button_tag "#{@idea.title}: #{@idea.description}" %>
+          </div>
+        </div>
+
+        <div class="col-md-10">
+
+        <div>
+          <%= @idea.title %>
+        </div>
+
+        <div>
+          <%= @idea.description %>
+        </div>
+
+        <div>
+          <% if @idea.user = current_user %>
+            <%= link_to "edit", edit_idea_path(@idea) %>
+            <%= link_to "delete", idea_path(@idea), method: :delete %>
+          <% end %>
+        </div>
+
+      </div>
+
+      <div>
+        <%= render "disqus" %>
+      </div>
+
+    </div>
+  </div>
+</div>

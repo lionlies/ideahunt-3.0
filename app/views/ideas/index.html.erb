@@ -3,14 +3,11 @@
 
     <div class="col-md-9">
 
-      <div class="col-md-2">
-      </div>
-
-      <div class="col-md-10">
+      <div class="col-md-11 col-md-offset-1">
         <table class="table table-hover">
 
           <h3>
-            Ideas List
+            Ideas List &nbsp
             <span class="pull-right">
               <%= link_to new_idea_path do %>
                 <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
@@ -21,42 +18,49 @@
           <tbody>
             <% @ideas.each do |idea| %>
               <tr>
-                <td class="col-md-1">
+                <td class="col-md-2">
 
-                  <div class="fav-icon">
+                  <span class="button" id="toppest_button">
                     <% if current_user %>
                       <% if !current_user.favorite_ideas.exists?(id: idea.id) %>
                         <%= link_to favorite_ideas_path(idea_id: idea), method: :post do %>
-                          <i class="fa fa-heart-o fa-lg" aria-hidden="true"></i>
+                          <i class="fa fa-heart-o" aria-hidden="true"></i>
                         <% end %>
                       <% else %>
                         <%= link_to favorite_idea_path(idea), method: :delete do %>
-                          <i class="fa fa-heart fa-lg" aria-hidden="true"></i>
+                          <i class="fa fa-heart" aria-hidden="true"></i>
                         <% end %>
                       <% end %>
                     <% else %>
                       <%= link_to favorite_ideas_path(idea_id: idea), method: :post do %>
-                        <i class="fa fa-heart-o fa-lg" aria-hidden="true"></i>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
                       <% end %>
                     <% end %>
                     <%= idea.fans.count %>
-                  </div>
+                  </span>
 
-                  <div>
-                    <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i>
+                  <br>
+
+                  <span class="button">
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
                     <a href="<%= url_for([idea, {only_path: false}]) %>#disqus_thread"></a>
-                  </div>
+                  </span>
 
                 </td>
 
-                <td class="col-md-11">
+                <td class="col-md-10">
+
                   <h4>
                     <%= link_to idea.title, idea_path(idea) %>
-                    <span class="pull-right">
-                      <%= idea.user.username %>
+                    <span class="pull-right created-by">
+                      created by <%= idea.user.username %>
                     </span>
                   </h4>
-                  <p><%= idea.description %></p>
+
+                  <p>
+                    <%= idea.description %>
+                  </p>
+
                   <p>
                     <% unless idea.tag_list.count == 0 %>
                       <b>Tags: </b><%= raw idea.tag_list.map { |t| link_to t, tag_path(t)}.join(', ') %>
