@@ -1,7 +1,9 @@
-<h3>Edit idea</h3>
-<%= simple_form_for @idea do |f| %>
-  <%= f.input :title, input_html: { class: "form-control"} %>
-  <%= f.input :description, input_html: { class: "form-control"} %>
-  <%= f.input :tag_list %>
-  <%= f.submit "Submit", data: {disable_with: "Submitting..."} %>
-<% end %>
+<div class="col-md-4 col-md-offset-4">
+  <h3>Edit idea</h3>
+  <%= simple_form_for @idea do |f| %>
+    <%= f.input :title, input_html: { class: "form-control"} %>
+    <%= f.input :description, input_html: { class: "form-control"} %>
+    <%= f.input :tag_list %>
+    <%= f.submit "Submit", data: {disable_with: "Submitting..."} %>
+  <% end %>
+</div>
