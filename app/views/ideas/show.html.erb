@@ -3,8 +3,10 @@
 
     <div class="col-md-8 col-md-offset-2">
 
+      <div class="show-box">
         <div class="col-md-2">
-          <div class="fav-icon">
+
+          <div class="button" id="show_icons">
             <% if current_user %>
               <% if !current_user.favorite_ideas.exists?(id: @idea.id) %>
                 <%= link_to favorite_ideas_path(idea_id: @idea), method: :post do %>
@@ -23,31 +25,43 @@
             <%= @idea.fans.count %>
           </div>
 
-          <div>
+          <div id="share_button">
             <%= social_share_button_tag "#{@idea.title}: #{@idea.description}" %>
           </div>
+
         </div>
 
         <div class="col-md-10">
 
-        <div>
-          <%= @idea.title %>
-        </div>
+          <div>
+            <h2 class="title">
+              <%= @idea.title %>
+            </h2>
+          </div>
+          <span>
+            <%= @idea.description %>
+          </span>
 
-        <div>
-          <%= @idea.description %>
-        </div>
+          <div class="pull-right">
+            <% if @idea.user = current_user %>
+              <%= link_to "edit", edit_idea_path(@idea) %>
+              <%= link_to "delete", idea_path(@idea), method: :delete %>
+            <% end %>
+          </div>
 
-        <div>
-          <% if @idea.user = current_user %>
-            <%= link_to "edit", edit_idea_path(@idea) %>
-            <%= link_to "delete", idea_path(@idea), method: :delete %>
-          <% end %>
+          <hr>
+
+          <span>
+            <% unless @idea.tag_list.count == 0 %>
+              <b>Tags: </b><%= raw @idea.tag_list.map { |t| link_to t, tag_path(t)}.join(', ') %>
+            <% end %>
+          </span>
+
         </div>
 
       </div>
 
-      <div>
+      <div id="show-disqus">
         <%= render "disqus" %>
       </div>
 
