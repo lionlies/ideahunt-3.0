@@ -43,7 +43,7 @@
           </span>
 
           <div class="pull-right">
-            <% if @idea.user.id = current_user.id %>
+            <% if @idea.user == current_user %>
               <%= link_to "edit", edit_idea_path(@idea) %>
               <%= link_to "delete", idea_path(@idea), method: :delete %>
             <% end %>
